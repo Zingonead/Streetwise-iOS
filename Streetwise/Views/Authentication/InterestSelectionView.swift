@@ -89,15 +89,19 @@ struct InterestCard: View {
             .frame(height: 100)
             .frame(maxWidth: .infinity)
             .background(
-                RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusMedium)
-                    .fill(isSelected ? AppColors.primaryGradient : Color.white)
-                    .overlay(
+                Group {
+                    if isSelected {
                         RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusMedium)
-                            .stroke(
-                                isSelected ? Color.clear : AppColors.neutralMedium.opacity(0.3),
-                                lineWidth: 1
+                            .fill(AppColors.primaryGradient)
+                    } else {
+                        RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusMedium)
+                            .fill(Color.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusMedium)
+                                    .stroke(AppColors.neutralMedium.opacity(0.3), lineWidth: 1)
                             )
-                    )
+                    }
+                }
             )
             .scaleEffect(isSelected ? 0.95 : 1.0)
             .shadow(

@@ -131,13 +131,19 @@ struct FilterChip: View {
                 .padding(.horizontal, DesignTokens.spacingM)
                 .padding(.vertical, DesignTokens.spacingS)
                 .background(
-                    RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusLarge)
-                        .fill(isSelected ? AppColors.primaryGradient : Color.clear)
-                        .overlay(
+                    Group {
+                        if isSelected {
                             RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusLarge)
-                                .stroke(AppColors.neutralMedium.opacity(0.3), lineWidth: 1)
-                                .opacity(isSelected ? 0 : 1)
-                        )
+                                .fill(AppColors.primaryGradient)
+                        } else {
+                            RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusLarge)
+                                .fill(Color.clear)
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusLarge)
+                                        .stroke(AppColors.neutralMedium.opacity(0.3), lineWidth: 1)
+                                )
+                        }
+                    }
                 )
         }
         .buttonStyle(PlainButtonStyle())
@@ -182,7 +188,7 @@ struct ExplorePostCell: View {
                 }
                 
                 // Distance overlay
-                if let location = post.location {
+                if post.location != nil {
                     VStack {
                         Spacer()
                         HStack {

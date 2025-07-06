@@ -28,7 +28,7 @@ struct InteractiveButtonStyle: ButtonStyle {
         configuration.label
             .scaleEffect(configuration.isPressed ? 0.95 : 1.0)
             .animation(AnimationUtilities.buttonPress, value: configuration.isPressed)
-            .onChange(of: configuration.isPressed) { isPressed in
+            .onChange(of: configuration.isPressed) { _, isPressed in
                 if isPressed {
                     let impact = UIImpactFeedbackGenerator(style: hapticFeedback)
                     impact.impactOccurred()

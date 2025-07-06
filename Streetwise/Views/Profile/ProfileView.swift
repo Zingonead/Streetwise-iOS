@@ -211,19 +211,17 @@ struct ProfileContentView: View {
     let selectedTab: Int
     
     var body: some View {
-        Group {
-            switch selectedTab {
-            case 0:
-                PostsGridView()
-            case 1:
-                MapView()
-            case 2:
-                AchievementsView()
-            case 3:
-                FavoritesView()
-            default:
-                PostsGridView()
-            }
+        switch selectedTab {
+        case 0:
+            PostsGridView()
+        case 1:
+            ProfileMapView()
+        case 2:
+            AchievementsView()
+        case 3:
+            FavoritesView()
+        default:
+            PostsGridView()
         }
     }
 }
@@ -254,7 +252,7 @@ struct PostsGridView: View {
     }
 }
 
-struct MapView: View {
+struct ProfileMapView: View {
     var body: some View {
         VStack {
             RoundedRectangle(cornerRadius: DesignTokens.cornerRadiusMedium)
